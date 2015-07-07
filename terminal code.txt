@@ -1,0 +1,9 @@
+bundle exec rails generate scaffold Tag name:string --no-test-framework
+bundle exec rails generate scaffold User name:string --no-test-framework
+bundle exec rails generate scaffold Post name:string content:string --no-test-framework
+rails generate migration AddUserRefToPosts user:references --no-test-framework
+bundle exec rails generate scaffold PostTag post:references tag:references --no-test-framework
+
+<div class="field">
+   <%= f.collection_check_boxes :tags, Tag.all, :id, :name %>
+</div>
