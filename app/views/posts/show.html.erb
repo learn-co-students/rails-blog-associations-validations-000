@@ -4,11 +4,16 @@
   <h3>Name:</h3>
   <%= @post.name %>
   <h3>Content:</h3>
-  <%= @post.content %>
-  <%if @post.tag_id%>
-  <%= @post.tag_id%>
-  <%end%>
-  <%one_post_id = @post.id%>
+  <%= @post.content %><br>
+  <%posts = PostTag.where(post_id: @post.id) %>
+  <%if posts.length > 0%>
+    <%posts.each do |postie|%>
+    <%= Tag.find(postie.tag_id).name%><br>
+    <%end%>
+
+    
+  <% end%>
+    <%one_post_id = @post.id%>
   <%my_tag = PostTag.where(post_id: one_post_id)%>
   
   <%if my_tag.length != 0%>
