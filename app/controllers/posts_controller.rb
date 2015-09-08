@@ -24,7 +24,14 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    strong_params = params.require(:post).permit(:id, :name, :created_at, :updated_at, :content, :user_id, :tag_id => [])
+    @post = Post.new(strong_params)
+    strong_params["tag_id"].each do |tag_id|
+      if tag_id.length > 0
+      taggie = Tag.find(tag_id)
+      taggie.posts << @post
+      end
+    end
 
     respond_to do |format|
       if @post.save

@@ -1,9 +1,11 @@
 describe 'tags for posts', :type => :feature do
   it 'can create a post without adding tags' do
     visit '/posts/new'
-    fill_in('Name', :with => 'Post title')
-    fill_in('Content', :with => 'post content')
+    fill_in('post_name', :with => 'Post title')
+    fill_in('post_content', :with => 'post content')
+    check('cute')
     click_button('Create Post')
+    sleep(1)
     expect(page).to have_content("Post title")
   end
 

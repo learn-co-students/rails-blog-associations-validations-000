@@ -3,6 +3,17 @@
 <p>
   <h3>Name:</h3>
   <%= @post.name %>
+  <h3>Content:</h3>
+  <%= @post.content %>
+  <%if @post.tag_id%>
+  <%= @post.tag_id%>
+  <%end%>
+  <%one_post_id = @post.id%>
+  <%my_tag = PostTag.where(post_id: one_post_id)%>
+  
+  <%if my_tag.length != 0%>
+  <%= my_tag.length%>
+  <%end%>
 </p>
 
 
