@@ -4,9 +4,10 @@
   <h3>Name:</h3>
   <%= @post.name %>
   <h3>Content:</h3>
-  <%= @post.content %><br>
+  <%= @post.content %><br><br>
   <%posts = PostTag.where(post_id: @post.id) %>
   <%if posts.length > 0%>
+  <h4>Post Tags</h4>
     <%posts.each do |postie|%>
     <%= Tag.find(postie.tag_id).name%><br>
     <%end%>
@@ -17,6 +18,7 @@
   <%my_tag = PostTag.where(post_id: one_post_id)%>
   
   <%if my_tag.length != 0%>
+  <h4>Tag Count</h4>
   <%= my_tag.length%>
   <%end%>
 </p>
